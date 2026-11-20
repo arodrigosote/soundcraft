@@ -10,6 +10,9 @@
 pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
     icon_png: Some(include_bytes!("../../../assets/app-icon/hicolor/128x128/apps/ai.storyteller.soundcraft.png")),
     accent: Some([0x1f, 0xa5, 0xc9]),
+    name: "ICASYS Audio",
+    developer: "ICASYS",
+    repo: "arodrigosote/soundcraft",
     ..craft_update::suite::SOUNDCRAFT
 };
 

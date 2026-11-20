@@ -728,7 +728,7 @@ pub fn show(app: &mut SoundApp, ctx: &egui::Context) {
         ui.allocate_exact_size(screen.size(), egui::Sense::click_and_drag());
     });
 
-    let mut window = egui::Window::new("SoundCraft Preferences")
+    let mut window = egui::Window::new("ICASYS Audio Preferences")
         .id(egui::Id::unique("preferences_window"))
         .open(&mut open)
         .order(egui::Order::Foreground)

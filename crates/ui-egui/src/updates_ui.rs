@@ -25,7 +25,7 @@ impl Default for Runtime {
     fn default() -> Self {
         Self {
             #[cfg(not(target_arch = "wasm32"))]
-            updater: Updater::new(&crate::UPDATE_APP, env!("CARGO_PKG_VERSION")),
+            updater: Updater::new(&crate::UPDATE_APP, env!("CARGO_PKG_VERSION")).with_source(::std::sync::Arc::new(|| -> ::std::result::Result<::std::option::Option<::craft_update::Release>, ::std::string::String> { Err(::std::string::String::from("ICASYS apps are updated by ICASYS: https://icasys.mx / Las apps de ICASYS se actualizan desde ICASYS: https://icasys.mx")) })),
             #[cfg(not(target_arch = "wasm32"))]
             startup_check: false,
             #[cfg(not(target_arch = "wasm32"))]
@@ -172,7 +172,7 @@ mod tests {
         std::fs::write(paths.data.join("self-update-done.txt"), "v0.2.0").unwrap();
         let mut app = SoundApp::new(soundcraft_engine::Engine::default(), None, Services::default());
         app.updates_rt.updater =
-            Updater::new(&crate::UPDATE_APP, "0.2.0").with_source(Arc::new(|| Ok(None))).with_pins_path(dir.join("pins.json")).with_paths(paths);
+            Updater::new(&crate::UPDATE_APP, "0.2.0").with_source(::std::sync::Arc::new(|| -> ::std::result::Result<::std::option::Option<::craft_update::Release>, ::std::string::String> { Err(::std::string::String::from("ICASYS apps are updated by ICASYS: https://icasys.mx / Las apps de ICASYS se actualizan desde ICASYS: https://icasys.mx")) })).with_source(Arc::new(|| Ok(None))).with_pins_path(dir.join("pins.json")).with_paths(paths);
         app.set_startup_update_check(true);
         let ctx = egui::Context::default();
         for _ in 0..3 {

@@ -1,0 +1,18 @@
+{
+  "app": "soundcraft",
+  "name": "ICASYS Audio",
+  "slug": "audio",
+  "upstream_name": "SoundCraft",
+  "upstream_base": "a52bbdccbe15342f44e0de1906bf71a621e7a68f",
+  "owner": "arodrigosote",
+  "es_ui": false,
+  "deb_section": "sound",
+  "cli": "soundcraft-cli",
+  "cli_project_ext": "scraft",
+  "mcp": {
+    "headless": "mcp --demo",
+    "attach": "mcp --connect 9876",
+    "auth": "none",
+    "project": ""
+  }
+}

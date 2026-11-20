@@ -82,13 +82,13 @@ impl eframe::App for App {
         // title carries them; elsewhere the egui menu bar already does.
         let title = if self.0.native_menu_bar {
             format!(
-                "{}{} — SoundCraft — {}",
+                "{}{} — ICASYS Audio — {}",
                 self.0.engine.session().name,
                 if self.0.engine.is_dirty() { " *" } else { "" },
                 if self.0.ui.window == soundcraft_ui_egui::MainWindow::Edit { "Edit" } else { "Mix" }
             )
         } else {
-            format!("{} — SoundCraft", self.0.engine.session().name)
+            format!("{} — ICASYS Audio", self.0.engine.session().name)
         };
         set_title(ctx, title);
     }
@@ -150,7 +150,7 @@ fn services() -> Services {
         pick_open: Some(Box::new(|purpose: &str, _exts: &[&str]| {
             let d = rfd::FileDialog::new();
             let d = match purpose {
-                "session.open" => d.add_filter("SoundCraft Session", &["scraft"]),
+                "session.open" => d.add_filter("ICASYS Audio Session", &["scraft"]),
                 "file.import_midi" => d.add_filter("MIDI", &["mid", "midi", "smf"]),
                 _ => d.add_filter("Audio", craft_audio::DECODE_EXTENSIONS),
             };
@@ -159,7 +159,7 @@ fn services() -> Services {
         pick_save: Some(Box::new(|purpose: &str, path: &std::path::Path| {
             let mut d = match purpose {
                 "file.bounce_mix" => rfd::FileDialog::new().add_filter("Audio", craft_audio::ENCODE_EXTENSIONS),
-                _ => rfd::FileDialog::new().add_filter("SoundCraft Session", &["scraft"]),
+                _ => rfd::FileDialog::new().add_filter("ICASYS Audio Session", &["scraft"]),
             };
             if let Some(dir) = path.parent().filter(|dir| dir.is_dir()) {
                 d = d.set_directory(dir);
@@ -222,7 +222,7 @@ fn main() -> eframe::Result {
     let prefs = load_prefs(&env).unwrap_or_default();
     let mut options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_title("SoundCraft")
+            .with_title("ICASYS Audio")
             .with_inner_size(sane_window_size(prefs.window_size))
             .with_maximized(prefs.window_maximized)
             .with_min_inner_size([960.0, 600.0])
